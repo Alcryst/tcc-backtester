@@ -22,15 +22,15 @@ class Chart:
         if end <= start:
             raise ValueError('Not enough time between start and end date')
         step = step.lower()
-        valid_steps = ['1m', '2m', '5m' '15m', '30m', '60m', '90m', '1h', '1d', '5d', '1wk', '1mo', '3mo']
+        valid_steps = ['1m', '2m', '5m', '15m', '30m', '60m', '90m', '1h', '1d', '5d', '1wk', '1mo', '3mo']
         if not (step in valid_steps):
             raise ValueError('Invalid Step Interval')
 
         data = yf.Ticker(ticker).history(interval=step, start=start, end=end)
         print(data) #for when i test
         plt.figure()
-        up = data[data.close >= data.open]
-        down = data[data.close < data.open]
+        up = data[data['Close'] >= data['Open']]
+        down = data[data['Close'] < data['Open']]
         upColor = 'Green'
         downColor = 'Red'
         # Setting width of candlestick elements
@@ -38,14 +38,14 @@ class Chart:
         width2 = .03
 
         # Plotting up prices of the stock
-        plt.bar(up.index, up.close - up.open, width, bottom=up.open, color=upColor)
-        plt.bar(up.index, up.high - up.close, width2, bottom=up.close, color=upColor)
-        plt.bar(up.index, up.low - up.open, width2, bottom=up.open, color=upColor)
+        plt.bar(up.index, up['Close'] - up['Open'], width, bottom=up['Open'], color=upColor)
+        plt.bar(up.index, up['High'] - up['Close'], width2, bottom=up['Close'], color=upColor)
+        plt.bar(up.index, up['Low'] - up['Open'], width2, bottom=up['Open'], color=upColor)
 
         # Plotting down prices of the stock
-        plt.bar(down.index, down.close - down.open, width, bottom=down.open, color=downColor)
-        plt.bar(down.index, down.high - down.open, width2, bottom=down.open, color=downColor)
-        plt.bar(down.index, down.low - down.close, width2, bottom=down.close, color=downColor)
+        plt.bar(down.index, down['Close'] - down['Open'], width, bottom=down['Open'], color=downColor)
+        plt.bar(down.index, down['High'] - down['Open'], width2, bottom=down['Open'], color=downColor)
+        plt.bar(down.index, down['Low'] - down['Close'], width2, bottom=down['Close'], color=downColor)
         plt.title("Jeffery's epic graph")
         plt.show()
         return plt.gcf().number
