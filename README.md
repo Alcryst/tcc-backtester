@@ -31,5 +31,5 @@ See something that could be improved with our backtester? Please make a branch w
 Note: Your changes must be:
  * Well Documented - Include Docstrings for every method and class you add/modify
  * Easily Legible - Must loosely adhere to Mike Scott's CS 314 [Style Guidelines](https://www.cs.utexas.edu/~scottm/cs314/handouts/hygiene_guide/code_hygiene_guide_framed.html)
- * Tested - Please include unit-tests with your changes
+ * Tested - Please include unit-tests with your changes. \
 We are honored to have you working with us!
