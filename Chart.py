@@ -3,14 +3,22 @@ import datetime
 import matplotlib.pyplot as plt
 import yfinance as yf
 
+"""
+Texas Capital Collective In-House Backtester Charting Script
+@authors: Jeffery Xu
+@date-created: 03/2024
+@last-modified: 03/2024
+"""
+
+
 class Chart:
 
     def plotPerformance(self, arr: np.ndarray, ticker: str, start: datetime.datetime,
                         end: datetime.datetime, step: str):
         candlePlotNum = self.plotCandlestick(ticker=ticker, start=start, end=end, step=step)
         plt.figure(candlePlotNum)
-        #now we have the candle stick plot.time to plot the gains
-        #is arr the net gains and losses per time step?
+        # now we have the candle stick plot.time to plot the gains
+        # is arr the net gains and losses per time step?
         y_vals = np.cumsum(arr)
         plt.plot(y_vals, color='blue')
         return
@@ -27,7 +35,7 @@ class Chart:
             raise ValueError('Invalid Step Interval')
 
         data = yf.Ticker(ticker).history(interval=step, start=start, end=end)
-        print(data) #for when i test
+        print(data)  # for when i test
         plt.figure()
         up = data[data['Close'] >= data['Open']]
         down = data[data['Close'] < data['Open']]
