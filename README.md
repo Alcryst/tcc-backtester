@@ -18,7 +18,7 @@ This repository serves to host our engine and store trading algorithms.
 Please use pip to install all required packages:
 * pip3
   ```sh
-  pip3 install requirements.txt
+  pip3 install -r requirements.txt
   ```
 ### Developing with us
 All algorithms must inherit the `Algorithm` class.\
